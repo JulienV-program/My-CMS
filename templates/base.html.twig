@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('build/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+    {#{% include "@CKSourceCKFinder/setup.html.twig" %}#}
+</head>
+<body>
+<header>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col-12 header-title">
+                <h1>Elevage du Bois des Volcans</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2 mr-3 header-link"></div>
+            <div class="col-2 mr-3 header-link"></div>
+            <div class="col-2 mr-3 header-link"></div>
+            <div class="col-2 mr-3 header-link"></div>
+            <div class="col-2 mr-3 header-link"></div>
+        </div>
+    </div>
+</header>
+
+{% block body %}{% endblock %}
+<footer>
+    <a href="/login">Connexion admin</a>
+</footer>
+{#<script src="/build/app.js" crossorigin="anonymous"></script>#}
+{#<script src="/asset/script.js" crossorigin="anonymous"></script>#}
+{% block javascripts %}{% endblock %}
+</body>
 </html>

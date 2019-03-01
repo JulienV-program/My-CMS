@@ -1,0 +1,5 @@
+App\Entity\User:
+  admin:
+    password: '\$argon2i\$v=19\$m=1024,t=2,p=2\$Mkk2aC5GTGpuTHVESVZkeg\$PdJWOqpQLBUShnUqKr9Ev1oMFwQF30HiHa+Nns6VxP8'
+    roles: '[ROLE_ADMIN]'
+    username: 'admin'
