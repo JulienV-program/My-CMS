@@ -1,0 +1,33 @@
+body {
+    background-color: lightgray;
+}
+
+
+.header-container{
+    background-color: grey;
+    align-content: center;
+    margin-bottom: 5rem;
+}
+
+.header-title{
+    /*display: flex;*/
+    text-align: center;
+}
+
+.header-link{
+    margin: auto;
+    height: 50px;
+    width: 150px;
+    background-color: #0f6674;
+    margin-bottom: 2rem;
+}
+
+.my-slider-item{
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+}
+
+.carousel{
+    height: 500px;
+}
