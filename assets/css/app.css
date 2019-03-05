@@ -22,12 +22,32 @@ body {
     margin-bottom: 2rem;
 }
 
-.my-slider-item{
+.carousel-container{
+
+ align-items: center;
+}
+
+.carousel-container>div{
+    margin: auto;
+}
+
+img{
+    max-width: 100%;
+}
+
+.align-exemple > div{
+    border : 2px solid black;
+}
+
+.adrec-slider-item{
     height: 500px;
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 
-.carousel{
-    height: 500px;
+@media screen and (max-width: 750px ){
+    .adrec-slider-item{
+        height: 400px;
+    }
 }
