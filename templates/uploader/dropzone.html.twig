@@ -1,0 +1,15 @@
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+{% endblock %}
+{% dump %}
+
+
+<form action="{{ oneup_uploader_endpoint('carrousel') }}?id={{ galeryId }}" method="post" class="dropzone">
+</form>
+
+
+
+{% block javascripts %}
+
+    {#<script src="/asset/js/dropzone.js"></script>#}
+{% endblock %}
