@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Dogs{% endblock %}
+
+{% block body %}
+    <h1>Edit Dogs</h1>
+
+    {{ include('dogs/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('dogs_index') }}">back to list</a>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-8">    <div>
+                    {% include 'uploader/dropzone.html.twig' with {'id' : carrousel.id} %}
+                </div></div>
+        </div>
+        <div class="row">
+            {% for elem in images %}
+                <div class="presentation col-2 ">
+                    <img src="{{ elem.path  | imagine_filter('squared_thumbnail') }}">
+                    {% set photo = { 'photo': elem } %}
+                    {% include 'uploader/_delete_form.html.twig' with photo %}
+                </div>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    {{ include('dogs/_delete_form.html.twig') }}
+{% endblock %}
