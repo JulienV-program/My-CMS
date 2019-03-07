@@ -39,15 +39,15 @@ img{
     border : 2px solid black;
 }
 
-.adrec-slider-item{
+.my-slider-item{
     height: 500px;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    /*background-attachment: fixed;*/
 }
 
 @media screen and (max-width: 750px ){
-    .adrec-slider-item{
+    .my-slider-item{
         height: 400px;
     }
 }
