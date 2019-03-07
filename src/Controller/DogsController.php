@@ -46,7 +46,7 @@ class DogsController extends AbstractController
             $entityManager->persist($dog);
             $entityManager->flush();
 
-            return $this->redirectToRoute('uploader_carrousel', ['id' => $carrousel->getId()]);
+            return $this->redirectToRoute("dogs_edit", ['id' => $dog->getId()]);
         }
 
         return $this->render('dogs/new.html.twig', [

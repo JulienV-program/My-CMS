@@ -26,6 +26,16 @@ class Puppys
      */
     private $Carrousel;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $PostedAt;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Title;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +61,30 @@ class Puppys
     public function setCarrousel(?Carrousel $Carrousel): self
     {
         $this->Carrousel = $Carrousel;
+
+        return $this;
+    }
+
+    public function getPostedAt(): ?\DateTimeInterface
+    {
+        return $this->PostedAt;
+    }
+
+    public function setPostedAt(\DateTimeInterface $PostedAt): self
+    {
+        $this->PostedAt = $PostedAt;
+
+        return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->Title;
+    }
+
+    public function setTitle(string $Title): self
+    {
+        $this->Title = $Title;
 
         return $this;
     }

@@ -51,3 +51,20 @@ img{
         height: 400px;
     }
 }
+
+/************Annonces**********************/
+.card{
+    /*align-items: center;*/
+}
+
+.pupy-carousel-inner{
+    width: 20rem;
+}
+
+.puppy-slider-item{
+    height: 18rem;
+    width: 20rem;
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed;*/
+}
