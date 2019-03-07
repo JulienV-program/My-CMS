@@ -5,47 +5,65 @@
 {% block body %}
 
 <section>
-    <div class="presentation">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dicta dolorum facilis inventore laborum modi porro quo rerum totam, vel. Cum doloremque dolorum impedit laboriosam libero nesciunt odio saepe! Accusamus aliquam atque est et illo impedit, maxime nesciunt quibusdam recusandae suscipit temporibus totam velit voluptate? Aliquam doloribus ducimus eaque iure molestias tempore totam unde voluptatem. Amet aspernatur consequuntur in provident!</p>
+    <div class="container">
+        <div class="row">
+            {% for item in page.paragraph %}
+            <div class="col-8">
+                <div class="presentation">
+                    <p>{{ item.body }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+
 </section>
 
 
 <section class="homme-slider">
     <div class="row carousel-container">
-        <div class="col-8">
-            <div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="asset/image.jpg" data-slide-to="0" class="active"></li>
-                    <li data-target="asset/image.jpg" data-slide-to="1"></li>
-                    <li data-target="asset/image.jpg" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="my-slider-item" style="background-image : url(asset/image.jpg)">
+        {% dump %}
 
-                        </div>
+        {% for item in page.carrousel %}
 
+
+            <div class="col-sm-12 col-md-12 col-lg-8 mb-4">
+                <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        {% for elem in carrousel %}
+                            {% if elem.id == item.id %}
+                                {% for image in elem.images %}
+                                    <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item-active" {% endif %}></li>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+
+                    <div class="carousel-inner">
+                        {% for elem in carrousel %}
+                            {% if elem.id == item.id %}
+                                {% for image in elem.images %}
+                                    <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
+                                        <div class="my-slider-item" style="background-image : url({{ image.path }})">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                    <div class="carousel-item">
-                        <div class="my-slider-item" style="background-image : url(asset/image.jpg)">
-
-                        </div>          </div>
-                    <div class="carousel-item">
-                        <div class="my-slider-item" style="background-image : url(asset/image.jpg)">
-
-                        </div>          </div>
+                    <a class="carousel-control-prev" href="#carouselExampleIndicators{{ item.id }}" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleIndicators{{ item.id }}" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
             </div>
-        </div>
+
+        {% endfor %}
+
     </div>
 </section>
 

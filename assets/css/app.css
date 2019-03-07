@@ -68,3 +68,18 @@ img{
     background-position: center;
     /*background-attachment: fixed;*/
 }
+
+/*************Presentation***********************/
+
+
+.dog-carousel-inner{
+    width: 20rem;
+}
+
+.dog-slider-item{
+    height: 18rem;
+    width: 20rem;
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed;*/
+}

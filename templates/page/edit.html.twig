@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Page{% endblock %}
+
+{% block body %}
+    {% dump %}
+    <h1>Edit Page</h1>
+
+    {{ include('page/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('page_index') }}">back to list</a>
+    <div class="container">
+        {% for item in carrousel %}
+            {%  set galeryId = item.id %}
+            <div class="row">
+                <div class="col-8">    <div>
+                        {% include 'uploader/dropzone.html.twig' with {'id' : item.id} %}
+                    </div></div>
+            </div>
+            <div class="row">
+                {% for elem in images %}
+                    <div class="presentation col-2 ">
+                        <img src="{{ elem.path  | imagine_filter('squared_thumbnail') }}">
+                        {% set photo = { 'photo': elem } %}
+                        {% include 'uploader/_delete_form.html.twig' with photo %}
+                    </div>
+
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    {{ include('page/_delete_form.html.twig') }}
+{% endblock %}

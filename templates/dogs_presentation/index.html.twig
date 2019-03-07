@@ -11,8 +11,8 @@
             <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name }}</h2></div>
             <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description }}</p></div>
 
-                <div class="col-sm-12 col-md-12 col-lg-8 mb-4">
-                    <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide" data-ride="carousel">
+                <div class="col-sm-12 col-md-12 col-lg-4 mb-4 ">
+                    <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide dog-carousel-inner" data-ride="carousel">
                         <ol class="carousel-indicators">
                             {% for elem in carrousel %}
                             {% if elem.id == item.carrousel.id %}
@@ -28,7 +28,7 @@
                                 {% if elem.id == item.carrousel.id %}
                                     {% for image in elem.images %}
                                 <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
-                                    <div class="my-slider-item" style="background-image : url({{ image.path }})">
+                                    <div class="dog-slider-item" style="background-image : url({{ image.path }})">
                                     </div>
                                 </div>
                                     {% endfor %}
