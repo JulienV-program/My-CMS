@@ -17,19 +17,23 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-2 mr-3 header-link"></div>
-            <div class="col-2 mr-3 header-link"></div>
-            <div class="col-2 mr-3 header-link"></div>
-            <div class="col-2 mr-3 header-link"></div>
-            <div class="col-2 mr-3 header-link"></div>
+            <div class="col-2 mr-3 header-link"><a href="{{ path('home') }}"><p>Acceuil</p></a></div>
+            <div class="col-2 mr-3 header-link"><a href="{{ path('dogs_presentation') }}"><p>Les Adultes</p></a></div>
+            <div class="col-2 mr-3 header-link"><a href="{{ path('annonce') }}"><p>Les Portées</p></a></div>
+            <div class="col-2 mr-3 header-link"><a href="{{ path('home') }}"><p>Un Compagnon</p></a></div>
+            <div class="col-2 mr-3 header-link"><a href="{{ path('home') }}"><p>Plan d'Accès</p></a></div>
         </div>
     </div>
 </header>
 
 {% block body %}{% endblock %}
 <footer>
-
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('dogs_index') }}">Panneau d'Administration</a>
+        <a href="/logout">Deconnexion</a>
+    {% else %}
     <a href="/login">Connexion admin</a>
+    {% endif %}
 </footer>
 {#<script src="/build/app.js" crossorigin="anonymous"></script>#}
 {#<script src="/asset/script.js" crossorigin="anonymous"></script>#}

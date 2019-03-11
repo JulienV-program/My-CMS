@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration du site{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-2 admin-nav">
+                <a href="{{ path('dogs_index') }}">Fiches Chiens</a>
+                <a href="{{ path('puppys_index') }}">Portées</a>
+                <a href="{{ path('page_index') }}">Pages du site</a>
+                <a href="{{ path('paragraph_index') }}">Paragraphes du site</a>
+            </div>
+            <div class="col-10 admin-panel">
+                {% block Admin %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

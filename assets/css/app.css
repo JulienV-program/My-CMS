@@ -20,6 +20,16 @@ body {
     width: 150px;
     background-color: #0f6674;
     margin-bottom: 2rem;
+    display: flex;
+
+
+}
+
+.header-link > a{
+    margin: auto;
+    text-align: center;
+    color: black;
+    text-decoration: none;
 }
 
 .carousel-container{
@@ -82,4 +92,18 @@ img{
     background-size: cover;
     background-position: center;
     /*background-attachment: fixed;*/
+}
+
+
+/****************Administration*******************/
+.admin-nav{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-panel{
+    border: 1px solid black;
+    border-radius: 10px;
 }
