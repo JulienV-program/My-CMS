@@ -20,8 +20,12 @@ class FullsizeController extends AbstractController
         $page = $pageRepository->findOneBy(['PageName' => 'Galerie']);
         dump($page);
 
-        $carrousel = $carrouselRepository->findAll();
-        $photo = $imagesRepository->findAll();
+        $carrousel= $carrouselRepository->findByPage($page);
+
+        $photo = [];
+        foreach ($carrousel as $item){
+            $photo[] = $imagesRepository->findBy(['carrousel' => $item]);
+        }
 
         return $this->render('fullsize/index.html.twig', [
             'path' => $title ,

@@ -35,6 +35,21 @@ class CarrouselRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByPage($page){
+        $query = $this->createQueryBuilder('a')
+            ->select('a')
+            ->leftJoin('a.pages', 'c')
+            ->addSelect('c');
+
+        $query = $query->add('where', $query->expr()->in('c', ':c'))
+            ->setParameter('c', $page)
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+    }
+
+
 
     /*
     public function findOneBySomeField($value): ?Carrousel

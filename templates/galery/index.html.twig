@@ -8,17 +8,13 @@
     <div id="fullSize" class ="hide"  > </div>
 
     <div class="col-12 ml-5">
-        {% for item in page.carrousel %}
             {% for elem in carrousel %}
-                {% if elem.id == item.id %}
                     {% for image in elem.images %}
                         <a class="zoom" href="#" onclick="show(this.name)" name="{{ image.path }}">
                             <img class="thumb" src="{{ image.path  | imagine_filter('squared_thumbnail') }}"/>
                         </a>
                     {% endfor %}
-                {% endif %}
             {% endfor %}
-        {% endfor %}
     </div>
 
 

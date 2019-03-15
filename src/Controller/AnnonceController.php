@@ -16,8 +16,16 @@ class AnnonceController extends AbstractController
     public function index(PuppysRepository $puppysRepository, CarrouselRepository $carrouselRepository, ImagesRepository $imagesRepository)
     {
         $puppys = $puppysRepository->findAll();
-        $carrousel = $carrouselRepository->findAll();
-        $photo = $imagesRepository->findAll();
+
+        $carrousel = [];
+        foreach ($puppys as $item){
+            $carrousel[] = $item->getCarrousel();
+        }
+        $photo = [];
+        foreach ($carrousel as $item){
+            $photo[] = $imagesRepository->findBy(['carrousel' => $item]);
+        }
+
         return $this->render('annonce/index.html.twig', [
             'puppys' => $puppys,
             'carrousel' => $carrousel,

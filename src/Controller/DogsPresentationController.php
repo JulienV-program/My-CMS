@@ -16,8 +16,15 @@ class DogsPresentationController extends AbstractController
     public function index(DogsRepository $dogsRepository, CarrouselRepository $carrouselRepository, ImagesRepository $imagesRepository)
     {
         $dogs = $dogsRepository->findAll();
-        $carrousel = $carrouselRepository->findAll();
-        $photo = $imagesRepository->findAll();
+        $carrousel = [];
+        foreach ($dogs as $item){
+            $carrousel[] = $item->getCarrousel();
+        }
+        $photo = [];
+        foreach ($carrousel as $item){
+            $photo[] = $imagesRepository->findBy(['carrousel' => $item]);
+        }
+
         return $this->render('dogs_presentation/index.html.twig', [
             'dogs' => $dogs,
             'carrousel' => $carrousel,
