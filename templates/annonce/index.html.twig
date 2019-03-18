@@ -51,7 +51,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ item.Title }}</h5>
                                 <p class="card-text">{{ item.PostedAt|date("m/d/Y") }}</p>
-                                <p class="card-text">{{ item.Description }}</p>
+                                <p class="card-text">{{ item.Description | raw }}</p>
                                 {#<a href="#" class="btn btn-primary">Go somewhere</a>#}
                             </div>
                         </div>

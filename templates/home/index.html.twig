@@ -10,7 +10,7 @@
             {% for item in page.paragraph %}
             <div class="col-8">
                 <div class="presentation">
-                    <p>{{ item.body }}</p>
+                    <p>{{ item.body | raw }}</p>
                 </div>
             </div>
             {% endfor %}

@@ -9,7 +9,7 @@
         {% for item in dogs %}
 
             <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name }}</h2></div>
-            <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description }}</p></div>
+            <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description | raw }}</p></div>
 
                 <div class="col-sm-12 col-md-12 col-lg-4 mb-4 ">
                     <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide dog-carousel-inner" data-ride="carousel">
@@ -50,11 +50,7 @@
     </div>
 </div>
 
-{% for item in carrousel %}
-    {% for elem in item.images %}
-        {{ elem.id }}
-    {% endfor %}
-{% endfor %}
+
 
 {#<div class="container">#}
     {#<div class="row">#}
