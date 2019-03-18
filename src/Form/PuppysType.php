@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Puppys;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,7 +14,7 @@ class PuppysType extends AbstractType
     {
         $builder
             ->add('Title')
-            ->add('Description')
+            ->add('Description', CKEditorType::class)
 
         ;
     }
