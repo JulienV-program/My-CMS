@@ -17,16 +17,16 @@
     {#</ul>#}
 {#</div>#}
     <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-              <tr><td><p> L'élevage du BOIS DES VOLCANS est situé à :<br>
 
-                                <LI>29 km de Clermont-Ferrand
-                                <LI>29 km de Pontgibaud
-                                <LI>52 km de Riom
-                            <LI> 30 km de Vulcania</td></p></tr>
+    <div class="row">
+        {% for item in page.paragraph %}
+            <div class="col-8">
+                <div class="presentation">
+                    <p>{{ item.body }}</p>
+                </div>
             </div>
-        </div>
+        {% endfor %}
+    </div>
         <div class="row">
             <div class="col-12">
                 <div id="mapid"></div>
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-    </div>
+
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
@@ -45,4 +45,44 @@
     <script src="{{ asset('asset/map.js') }}"></script>
 
 
+
+        <section class="homme-slider">
+            <div class="row carousel-container">
+                {% dump %}
+
+                {% for elem in carrousel %}
+
+
+                    <div class="col-sm-12 col-md-12 col-lg-8 mb-4">
+                        <div id="carouselExampleIndicators{{ elem.id }}" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                {% for image in elem.images %}
+                                    <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item-active" {% endif %}></li>
+                                {% endfor %}
+                            </ol>
+
+                            <div class="carousel-inner">
+                                {% for image in elem.images %}
+                                    <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
+                                        <div class="my-big-slider-item" style="background-image : url({{ image.path }})">
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators{{ elem.id }}" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleIndicators{{ elem.id }}" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+
+            </div>
+        </section>
 {% endblock %}
