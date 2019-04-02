@@ -18,7 +18,7 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('main', './assets/main.js')
+    .addEntry('main', './assets/js/main.js')
     .addEntry('dropZone', './assets/js/dropzone.js')
 
     //.addEntry('page1', './assets/js/page1.js')
