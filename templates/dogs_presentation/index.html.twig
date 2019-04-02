@@ -4,22 +4,25 @@
 
 {% block body %}
 {% dump %}
-<div class="container">
-    <div class="row">
-        {% for item in dogs %}
+    <div class="container">
+        <div class="row" id="dog">
+            {% for item in dogs %}
 
-            <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name }}</h2></div>
-            <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description | raw }}</p></div>
+                <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name }}</h2></div>
+                <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description | raw }}</p>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="edit-dog" id="button-{{ item.id }}" title="{{ item.id }}" >Modifier</button>
+                    {% endif %}</div>
 
                 <div class="col-sm-12 col-md-12 col-lg-4 mb-4 ">
                     <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide dog-carousel-inner" data-ride="carousel">
                         <ol class="carousel-indicators">
                             {% for elem in carrousel %}
-                            {% if elem.id == item.carrousel.id %}
-                                {% for image in elem.images %}
-                                <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item-active" {% endif %}></li>
-                                {% endfor %}
-                            {% endif %}
+                                {% if elem.id == item.carrousel.id %}
+                                    {% for image in elem.images %}
+                                        <li data-target="#carousel" data-slide-to="{{ loop.index0 }}" {% if loop.index0 == 0 %} class="item-active" {% endif %}></li>
+                                    {% endfor %}
+                                {% endif %}
                             {% endfor %}
                         </ol>
 
@@ -27,10 +30,10 @@
                             {% for elem in carrousel %}
                                 {% if elem.id == item.carrousel.id %}
                                     {% for image in elem.images %}
-                                <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
-                                    <div class="dog-slider-item" style="background-image : url({{ image.path }})">
-                                    </div>
-                                </div>
+                                        <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
+                                            <div class="dog-slider-item" style="background-image : url({{ image.path }})">
+                                            </div>
+                                        </div>
                                     {% endfor %}
                                 {% endif %}
                             {% endfor %}
@@ -43,13 +46,13 @@
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="sr-only">Next</span>
                         </a>
-                     </div>
+                    </div>
+
                 </div>
 
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
-</div>
-
 
 
 {#<div class="container">#}

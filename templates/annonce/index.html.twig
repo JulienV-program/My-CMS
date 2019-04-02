@@ -9,8 +9,9 @@
             <div class="row">
                 {% for item in puppys %}
 
-                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4 post-item" >
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4 post-item" id="puppy-{{ item.id }}" >
                         <div class="mb-4 card" style="width: 22rem;">
+                            <h2 class="card-title text-center">{{ item.Title }}</h2>
 
                             <div class="col-sm-12 col-md-12 col-lg-8 mb-4 mt-3 pupy-carousel-inner">
                                 <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide pupy-carousel-inner" data-ride="carousel">
@@ -29,9 +30,12 @@
                                             {% if elem.id == item.carrousel.id %}
                                                 {% for image in elem.images %}
                                                     <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
+
                                                         <div class="puppy-slider-item" style="background-image : url({{ image.path }})">
                                                         </div>
                                                         <div class="carousel-caption d-none d-md-block">
+                                                        </div>
+                                                        <div class="text-center">
                                                             <h5>{{ image.Description }}</h5>
                                                         </div>
                                                     </div>
@@ -54,16 +58,26 @@
 
 
                             <div class="card-body">
-                                <h5 class="card-title">{{ item.Title }}</h5>
-                                <p class="card-text">{{ item.PostedAt|date("m/d/Y") }}</p>
+                                {#<p class="card-text">{{ item.PostedAt|date("m/d/Y") }}</p>#}
                                 <p class="card-text">{{ item.Description | raw }}</p>
                                 {#<a href="#" class="btn btn-primary">Go somewhere</a>#}
                             </div>
                         </div>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <button class="edit-button" id="button-{{ item.id }}" title="{{ item.id }}" >Modifier</button>
+                            <form method="post" action="{{ path('puppys_delete', {'id': item.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ item.id) }}">
+                                <button >Supprimer l'annonce</button>
+                            </form>
+                        {% endif %}
+
                     </div>
 
-
                 {% endfor %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('puppys_new') }}">Nouvelle Annonce</a>
+                {% endif %}
 
 
             </div>

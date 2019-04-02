@@ -4,20 +4,24 @@
 
 {% block body %}
 
-<section>
-    <div class="container">
-        <div class="row">
-            {% for item in page.paragraph %}
-            <div class="col-8">
-                <div class="presentation">
-                    <p>{{ item.body | raw }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
+    <section>
+        <div class="container">
+            <div class="row">
+                {% for item in page.paragraph %}
+                    <div class="col-8">
+                        <div class="presentation" id="paragraph-{{ item.id }}">
+                            <p>{{ item.body | raw }}</p>
+                        </div>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <button class="edit-paragraph" id="button-{{ item.id }}" title="{{ item.id }}" >Modifier</button>
+                        {% endif %}
 
-</section>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+    </section>
 
 
     <section class="homme-slider">
@@ -52,7 +56,12 @@
                             <span class="sr-only">Next</span>
                         </a>
                     </div>
+                    <div id="carrousel-{{ page.id }}"></div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="edit-carrousel" id="button-{{ page.id }}" title="{{ page.id }}" >Modifier</button>
+                    {% endif %}
                 </div>
+
 
             {% endfor %}
 
@@ -62,11 +71,11 @@
 
 
 
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>
-    <script src="asset/script.js" crossorigin="anonymous"></script>
+{#    <script#}
+{#            src="https://code.jquery.com/jquery-3.3.1.min.js"#}
+{#            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="#}
+{#            crossorigin="anonymous"></script>#}
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>#}
+{#    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/js/bootstrap.min.js" integrity="sha384-7aThvCh9TypR7fIc2HV4O/nFMVCBwyIUKL8XCtKE+8xgCgl/PQGuFsvShjr74PBp" crossorigin="anonymous"></script>#}
+{#    <script src="asset/script.js" crossorigin="anonymous"></script>#}
 {% endblock %}
