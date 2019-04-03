@@ -11,7 +11,7 @@ function show($title){
 
   var ajax = new XMLHttpRequest();
 
-  ajax.onreadystatechange = function(){ $fullSize.innerHTML = '<div id="close" onclick="hide()">Close</div>' +  ajax.response
+  ajax.onreadystatechange = function(){ $fullSize.innerHTML = '<button id="close" onclick="hide()">Close</button>' +  ajax.response
     $fullSize.style.display = 'block'}
 
   ajax.open("GET", "/fullsize/?title="+ $title , true )

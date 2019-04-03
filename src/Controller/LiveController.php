@@ -29,7 +29,7 @@ class LiveController extends AbstractController
     public function description(Request $request ,ImagesRepository $imagesRepository, Images $images){
         dump($_POST);
         dump($request);
-        $images->setDescription($_POST['content']);
+        $images->setDescription($_POST['data']);
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($images);
         $manager->flush();
@@ -38,13 +38,28 @@ class LiveController extends AbstractController
     }
 
     /**
-     * @Route("puppy/{id}/edit", name="puppy_edit", methods={"POST"})
+     * @Route("puppy/{id}/edit-title", name="puppy_edit_title", methods={"POST"})
      */
-    public function setpuppy(Request $request, Puppys $puppys){
+    public function setPuppyTitle(Request $request, Puppys $puppys){
         dump($_POST);
         dump($request);
-        $puppys->setDescription($_POST['body']);
         $puppys->setTitle($_POST['title']);
+        $manager = $this->getDoctrine()->getManager();
+        $manager->persist($puppys);
+        $manager->flush();
+
+        return $this->redirectToRoute('annonce');
+    }
+
+    /**
+     * @Route("puppy/{id}/edit-description", name="puppy_edit_description", methods={"POST"})
+     */
+    public function setPuppyDescription(Request $request, Puppys $puppys){
+        dump($_POST);
+        dump($request);
+        $data = $_POST['data'];
+
+        $puppys->setDescription($data);
         $manager = $this->getDoctrine()->getManager();
         $manager->persist($puppys);
         $manager->flush();
@@ -68,7 +83,7 @@ class LiveController extends AbstractController
     }
 
     /**
-     * @Route("dog/{id}/edit-name", name="dog_edit", methods={"POST"})
+     * @Route("dog/{id}/edit-name", name="dog_edit_name", methods={"POST"})
      */
     public function setDogName(Request $request, Dogs $dogs){
         dump($_POST);
@@ -83,7 +98,7 @@ class LiveController extends AbstractController
     }
 
     /**
-     * @Route("dog/{id}/edit-description", name="dog_edit", methods={"POST"})
+     * @Route("dog/{id}/edit-description", name="dog_edit_description", methods={"POST"})
      */
     public function setDogDescription(Request $request, Dogs $dogs){
         dump($_POST);

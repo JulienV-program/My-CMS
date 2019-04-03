@@ -188,7 +188,10 @@ div.thumbnail {
 }
 
 #close{
-    color: white;
+    /*height: 3rem;*/
+    padding: 2rem;
+    border-radius: 5px;
+    color: black;
 }
 
 

@@ -32,12 +32,13 @@
                                                     <div class="carousel-item {{ loop.index0 }} {% if loop.first %}active {% endif %}">
 
                                                         <div class="puppy-slider-item" style="background-image : url({{ image.path }})">
-                                                        </div>
-                                                        <div class="carousel-caption d-none d-md-block">
+                                                            <div class="carousel-caption d-none d-md-block">
+                                                            </div>
                                                         </div>
                                                         <div class="text-center">
-                                                            <h5>{{ image.Description }}</h5>
+                                                            <h5>{{ image.Description | raw }}</h5>
                                                         </div>
+
                                                     </div>
 
                                                 {% endfor %}
