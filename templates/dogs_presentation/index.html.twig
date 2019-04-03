@@ -8,7 +8,7 @@
         <div class="row" id="dog">
             {% for item in dogs %}
 
-                <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name }}</h2></div>
+                <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><h2>{{ item.Name | raw}}</h2></div>
                 <div class="col-sm-12 col-md-12 col-lg-8 mb-4"><p>{{ item.Description | raw }}</p>
                     {% if is_granted('ROLE_ADMIN') %}
                         <button class="edit-dog" id="button-{{ item.id }}" title="{{ item.id }}" >Modifier</button>

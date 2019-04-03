@@ -11,7 +11,7 @@
 
                     <div class="col-sm-12 col-md-6 col-lg-4 mb-4 post-item" id="puppy-{{ item.id }}" >
                         <div class="mb-4 card" style="width: 22rem;">
-                            <h2 class="card-title text-center">{{ item.Title }}</h2>
+                            <h2 class="card-title text-center">{{ item.Title |raw }}</h2>
 
                             <div class="col-sm-12 col-md-12 col-lg-8 mb-4 mt-3 pupy-carousel-inner">
                                 <div id="carouselExampleIndicators{{ item.id }}" class="carousel slide pupy-carousel-inner" data-ride="carousel">

@@ -1,5 +1,6 @@
 <template>
     <div class="carrousel">
+        <button onclick="location.reload()" click="">Mettre à jour</button>
         <div v-for="carrousel in item.Carrousel">
             <vue-dropzone ref="myVueDropzone" id="dropzone" :options="dropzoneOptions" :url="url + carrousel.id"></vue-dropzone>
             <a :href="'/uploaderCarrousel/carrousel-' + carrousel.id">Gérer les images</a>

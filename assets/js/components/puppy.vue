@@ -16,7 +16,7 @@
                     <label for="body">Description</label>
                     <div id="id" style="display: none">{{item.id}}</div>
                     <ckeditor  name="body" id="body" :editor="editor" :config="editorConfig" :value="item.Description" @blur="onEditorBlur"></ckeditor>
-                    <p><input type="submit" value="Submit"></p>
+                    <p><input type="submit" value="Mettre à jour"></p>
                 </div>
 
 
