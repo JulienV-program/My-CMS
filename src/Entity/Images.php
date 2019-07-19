@@ -26,6 +26,11 @@ class Images
      */
     private $carrousel;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Description;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class Images
     public function setCarrousel(?Carrousel $carrousel): self
     {
         $this->carrousel = $carrousel;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->Description;
+    }
+
+    public function setDescription(?string $Description): self
+    {
+        $this->Description = $Description;
 
         return $this;
     }

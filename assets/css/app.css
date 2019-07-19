@@ -108,6 +108,12 @@ img{
     border-radius: 10px;
 }
 
+/*#dropzone{*/
+/*    height: 4rem;*/
+/*    border: 1px solid black;*/
+/*    border-radius: 3px;*/
+/*    background-color: white;*/
+/*}*/
 /**********Galerie**********/
 
 .thumb {
@@ -182,7 +188,10 @@ div.thumbnail {
 }
 
 #close{
-    color: white;
+    /*height: 3rem;*/
+    padding: 2rem;
+    border-radius: 5px;
+    color: black;
 }
 
 

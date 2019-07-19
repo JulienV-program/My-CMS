@@ -14,3 +14,31 @@ require('../css/app.css');
 // const $ = require('jquery');
 
 console.log('Hello Webpack Encore! Edit me in assets/js/app.js');
+
+
+$thumbnail = document.querySelector("#thumbnail");
+
+
+
+$fullSize = document.querySelector("#fullSize");
+
+
+function show($title){
+    console.log($title)
+
+    var ajax = new XMLHttpRequest();
+
+    ajax.onreadystatechange = function(){ $fullSize.innerHTML = '<div id="close" onclick="hide()">Close</div>' +  ajax.response
+        $fullSize.style.display = 'block'}
+
+    ajax.open("GET", "/fullsize/?title="+ $title , true )
+    ajax.send();
+
+}
+
+function hide(){
+    $fullSize.innerHTML = "";
+    $fullSize.style.display = "none";
+}
+
+console.log('test')

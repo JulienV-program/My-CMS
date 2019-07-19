@@ -21,6 +21,8 @@
                     <div class="presentation col-2 ">
                         <img src="{{ elem.path  | imagine_filter('squared_thumbnail') }}">
                         {% set photo = { 'photo': elem } %}
+                        {% dump %}
+                        {% include 'images/description.html.twig' with photo %}
                         {% include 'uploader/_delete_form.html.twig' with photo %}
                     </div>
 

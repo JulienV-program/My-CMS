@@ -21,10 +21,14 @@
     <div class="row">
         {% for item in page.paragraph %}
             <div class="col-8">
-                <div class="presentation">
-                    <p>{{ item.body }}</p>
+                <div class="presentation" id="paragraph-{{ item.id }}">
+                    <p>{{ item.body | raw }}</p>
                 </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <button class="edit-paragraph" id="button-{{ item.id }}" title="{{ item.id }}" >Modifier</button>
+                {% endif %}
             </div>
+
         {% endfor %}
     </div>
         <div class="row">

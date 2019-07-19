@@ -10,6 +10,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 /**
  * @Route("/paragraph")
  */
@@ -78,6 +83,31 @@ class ParagraphController extends AbstractController
             'paragraph' => $paragraph,
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     *  @Route("/{id}/get", name="paragraph_get", methods={"GET"})
+     */
+    public function paragraphGet(Request $request, Paragraph $paragraph)
+    {
+
+        $normalizer = new ObjectNormalizer();
+
+//        $normalizer->setIgnoredAttributes(['carrousel']);
+        dump($normalizer);
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
+
+//        $response = $serializer->serialize($page, 'json');
+        $response = $serializer->serialize($paragraph, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($response);
     }
 
     /**

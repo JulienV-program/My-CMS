@@ -14,7 +14,7 @@ class ParagraphType extends AbstractType
     {
         $builder
             ->add('Title', CKEditorType::class)
-            ->add('Body')
+            ->add('Body', CKEditorType::class)
             ->add('page')
         ;
     }

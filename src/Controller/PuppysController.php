@@ -14,6 +14,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
 
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 
 /**
  * @Route("/puppys")
@@ -98,7 +103,30 @@ class PuppysController extends AbstractController
             'galeryId' => $carrousel->getId(),
         ]);
     }
+    /**
+     *  @Route("/{id}/get", name="puppy_get", methods={"GET"})
+     */
+    public function puppyGet(Request $request, Puppys $puppys)
+    {
 
+        $normalizer = new ObjectNormalizer();
+
+//        $normalizer->setIgnoredAttributes(['carrousel']);
+        dump($normalizer);
+        $encoder = new JsonEncoder();
+
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
+
+//        $response = $serializer->serialize($page, 'json');
+        $response = $serializer->serialize($puppys, 'json', [
+            'circular_reference_handler' => function ($object) {
+                return $object->getId();
+            }
+        ]);
+
+        return new Response($response);
+    }
     /**
      * @Route("/{id}", name="puppys_delete", methods={"DELETE"})
      */
@@ -123,6 +151,6 @@ class PuppysController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('puppys_index');
+        return $this->redirectToRoute('annonce');
     }
 }

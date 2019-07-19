@@ -13,6 +13,13 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\Serializer\SerializerInterface;
+
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
+
 
 
 /**
@@ -99,6 +106,24 @@ class DogsController extends AbstractController
     }
 
     /**
+     *  @Route("/{id}/get", name="dogs_get", methods={"GET"})
+     */
+    public function dogGet(Request $request, Dogs $dog, CarrouselRepository $carrouselRepository, ImagesRepository $imagesRepository)
+    {
+//        $serializer = $this->get('serializer');
+//        $response = $serializer->serialize($dog,'json');
+        $normalizer = new ObjectNormalizer();
+        $normalizer->setIgnoredAttributes(['carrousel']);
+        $encoder = new JsonEncoder();
+        dump($normalizer);
+        $serializer = new Serializer([$normalizer], [$encoder]);
+
+        $response = $serializer->serialize($dog, 'json');
+
+        return new Response($response);
+    }
+
+    /**
      * @Route("/{id}", name="dogs_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Dogs $dog, CarrouselRepository $carrouselRepository, ImagesRepository $imageRepository): Response
@@ -124,4 +149,6 @@ class DogsController extends AbstractController
 
         return $this->redirectToRoute('dogs_index');
     }
+
+
 }

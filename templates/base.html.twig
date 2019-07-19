@@ -35,11 +35,13 @@
     <a href="/login">Connexion admin</a>
     {% endif %}
 </footer>
-{#<script src="/build/app.js" crossorigin="anonymous"></script>#}
-{#<script src="/asset/script.js" crossorigin="anonymous"></script>#}
+
 <script src="{{ asset('build/dropZone.js') }}"></script>
 <script src="{{ asset('build/app.js') }}"></script>
-<script src="{{ asset('asset/dropzone.js') }}"></script>
+{% if is_granted('ROLE_ADMIN') %}
+    <script src="{{ asset('build/main.js') }}"></script>
+
+{% endif %}
 <script
         src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

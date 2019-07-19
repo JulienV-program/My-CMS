@@ -7,9 +7,15 @@
 
     <div id="fullSize" class ="hide"  > </div>
 
+    {% if is_granted('ROLE_ADMIN') %}
+        <div id="carrousel-{{ page.id }}"></div>
 
+        <button class="edit-carrousel" id="button-{{ page.id }}" title="{{ page.id }}" >Modifier</button>
+    {% endif %}
     <div class="col-12 ml-5">
             {% for elem in carrousel %}
+
+
                     {% for image in elem.images %}
                         <a class="zoom" href="#" onclick="show(this.name)" name="{{ image.path }}">
                             <img class="thumb" src="{{ image.path  | imagine_filter('squared_thumbnail') }}"/>
@@ -17,6 +23,9 @@
                     {% endfor %}
             {% endfor %}
     </div>
+
+    <script src="{{ asset('asset/dropzone.js') }}"></script>
+
 
 
 {% endblock %}
